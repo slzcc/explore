@@ -59,19 +59,16 @@ def urlPathCompensation(base_url, request_url):
     if matchObj:
         base = 'https://{}'.format(urlparse(base_url).hostname)
         addr = urljoin(base, request_url)
-        print(addr)
         return addr
 
     matchObj = re.match(r'^/static', addr, re.M|re.I)
     if matchObj:
         base = 'https://{}'.format(urlparse(base_url).hostname)
         addr = urljoin(base, request_url)
-        print(addr)
         return addr
 
     matchObj = re.match(r'^//', addr, re.M|re.I)
     if matchObj:
-        print(addr)
         return null
 
 if __name__ == '__main__':
@@ -81,6 +78,7 @@ if __name__ == '__main__':
         print(result)
         for data_type in result:
             for url_data in result[data_type]:
+                print(url_data)
                 if url_data:
                     session = requests.get(urlPathCompensation(url, url_data))
                     print(session.status_code)
