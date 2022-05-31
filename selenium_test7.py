@@ -22,9 +22,9 @@ def html_selenium_firefox(url):
     # 发送请求
     driver.get(url)
     # 显式等待：显式地等待某个元素被加载
-    wait = WebDriverWait(driver, 20)
-    wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'article-content')))
-    wait.until(EC.presence_of_element_located((By.TAG_NAME, 'span')))
+    # wait = WebDriverWait(driver, 20)
+    # wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'article-content')))
+    # wait.until(EC.presence_of_element_located((By.TAG_NAME, 'span')))
     # 获取网页源码
     html = driver.page_source
     # 关闭浏览器释放资源
