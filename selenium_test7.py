@@ -56,4 +56,4 @@ if __name__ == '__main__':
         for data_type in result:
             for url_data in result[data_type]:
                 session = requests.get(url_data)
-                print(session.http_code)
+                print(session.status_code)
