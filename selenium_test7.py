@@ -71,6 +71,8 @@ def urlPathCompensation(base_url, request_url):
     if matchObj:
         return null
 
+    return request_url
+
 if __name__ == '__main__':
     urls = ["https://www.billance.com"]
     for url in urls:
