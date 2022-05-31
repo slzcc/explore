@@ -38,7 +38,7 @@ caps = {
  
 class BaiduTestCase(unittest.TestCase):
   def setUp(self):
-    self.browser = webdriver.Firefox(desired_capabilities=caps, chrome_options=chrome_options)
+    self.browser = webdriver.Firefox(desired_capabilities=caps, options=chrome_options)
     self.addCleanup(self.browser.quit)
   def testPageTitle(self):
     self.browser.get('http://www.baidu.com')
