@@ -78,7 +78,7 @@ if __name__ == '__main__':
         print(result)
         for data_type in result:
             for url_data in result[data_type]:
-                print(url_data)
+                print(url_data,urlPathCompensation(url, url_data))
                 if url_data:
                     session = requests.get(urlPathCompensation(url, url_data))
                     print(session.status_code)
