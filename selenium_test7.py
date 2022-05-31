@@ -82,5 +82,5 @@ if __name__ == '__main__':
         for data_type in result:
             for url_data in result[data_type]:
                 if url_data:
-                    session = requests.get(urlPathCompensation(url_data))
+                    session = requests.get(urlPathCompensation(url, url_data))
                     print(session.status_code)
