@@ -35,7 +35,10 @@ def html_selenium_firefox(url):
 def get_news_content(url):
     html = html_selenium_firefox(url)
     tree = etree.HTML(html)
-    print(tree)
+    # 处理 content 乱码问题
+    content = str(etree.tostring(content, encoding='utf-8', method='html'), 'utf-8')
+    # 提取 content 中所有图片的地址
+    script = etree.HTML(content).xpath('//script/@src')
 
 
 if __name__ == '__main__':
