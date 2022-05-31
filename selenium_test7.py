@@ -38,7 +38,7 @@ def get_news_content(url):
     # 处理 content 乱码问题
     content = str(etree.tostring(content, encoding='utf-8', method='html'), 'utf-8')
     # 提取 content 中所有图片的地址
-    script = etree.HTML(content).xpath('//script/@src')
+    script = tree.xpath('//script/@src')
 
     data = {
         "script": script
