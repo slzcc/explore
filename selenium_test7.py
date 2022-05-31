@@ -45,7 +45,7 @@ def get_news_content(url):
         "link": link
     }
 
-    print(data)
+    return data
 
 
 if __name__ == '__main__':
