@@ -59,16 +59,19 @@ def urlPathCompensation(base_url, request_url):
     if matchObj:
         base = 'https://{}'.format(urlparse(base_url).hostname)
         addr = urljoin(base, request_url)
+        print(addr)
         return addr
 
     matchObj = re.match(r'^/static', a, re.M|re.I)
     if matchObj:
         base = 'https://{}'.format(urlparse(base_url).hostname)
         addr = urljoin(base, request_url)
+        print(addr)
         return addr
 
     matchObj = re.match(r'^//', a, re.M|re.I)
     if matchObj:
+        print(addr)
         return null
 
 if __name__ == '__main__':
