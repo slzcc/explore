@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC  # 和下面WebDriverWait一起用的
 from selenium.webdriver.support.wait import WebDriverWait
-
+import requests
 
 def html_selenium_firefox(url):
     """
@@ -42,7 +42,6 @@ def get_news_content(url):
 
     data = {
         "script": script,
-        "images": images,
         "link": link
     }
 
@@ -50,6 +49,11 @@ def get_news_content(url):
 
 
 if __name__ == '__main__':
-    url = "https://www.billance.com"
-    result = get_news_content(url)
-    print(result)
+    urls = ["https://www.billance.com"]
+    for url in urls:
+        result = get_news_content(url)
+        print(result)
+        for data_type in result:
+            for url_data in result[data_type]:
+                session = requests.get(url_data)
+                print(session.http_code)
