@@ -3,7 +3,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC  # 和下面WebDriverWait一起用的
 from selenium.webdriver.support.wait import WebDriverWait
+from urllib.parse import urljoin
+from urllib.parse import urlparse
+
 import requests
+import re
 
 def html_selenium_firefox(url):
     """
@@ -47,6 +51,25 @@ def get_news_content(url):
 
     return data
 
+def urlPathCompensation(base_url, request_url):
+
+    addr = request_url
+    # 判断是否存在 /configs 开头文件
+    matchObj = re.match(r'^/configs', a, re.M|re.I)
+    if matchObj:
+        base = 'https://{}'.format(urlparse(base_url).hostname)
+        addr = urljoin(base, request_url)
+        return addr
+
+    matchObj = re.match(r'^/static', a, re.M|re.I)
+    if matchObj:
+        base = 'https://{}'.format(urlparse(base_url).hostname)
+        addr = urljoin(base, request_url)
+        return addr
+
+    matchObj = re.match(r'^//', a, re.M|re.I)
+    if matchObj:
+        return null
 
 if __name__ == '__main__':
     urls = ["https://www.billance.com"]
@@ -55,5 +78,6 @@ if __name__ == '__main__':
         print(result)
         for data_type in result:
             for url_data in result[data_type]:
-                session = requests.get(url_data)
-                print(session.status_code)
+                if url_data:
+                    session = requests.get(url_data)
+                    print(session.status_code)
