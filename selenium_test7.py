@@ -37,9 +37,13 @@ def get_news_content(url):
     tree = etree.HTML(html)
     # 提取 content 中所有图片的地址
     script = tree.xpath('//script/@src')
+    images = tree.xpath('//img/@src')
+    link = tree.xpath('//link/@src')
 
     data = {
-        "script": script
+        "script": script,
+        "images": images,
+        "link": link
     }
 
     print(data)
