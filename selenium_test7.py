@@ -40,6 +40,12 @@ def get_news_content(url):
     # 提取 content 中所有图片的地址
     script = etree.HTML(content).xpath('//script/@src')
 
+    data = {
+        "script": script
+    }
+
+    print(data)
+
 
 if __name__ == '__main__':
     url = "https://www.billance.com"
