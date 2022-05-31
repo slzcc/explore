@@ -38,7 +38,7 @@ def get_news_content(url):
     # 提取 content 中所有图片的地址
     script = tree.xpath('//script/@src')
     images = tree.xpath('//img/@src')
-    link = tree.xpath('//link/@src')
+    link = tree.xpath('//link/@href')
 
     data = {
         "script": script,
