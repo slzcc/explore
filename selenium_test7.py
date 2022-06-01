@@ -90,7 +90,7 @@ def urlPathCompensation(base_url, request_url):
 
 if __name__ == '__main__':
     for url in urls.split('\n'):
-        if url != None:
+        if url != "":
             logging.info("当前探测的域名为: {}".format(url))
             result = get_news_content(url)
             for data_type in result:
