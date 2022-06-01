@@ -69,7 +69,7 @@ def urlPathCompensation(base_url, request_url):
 
     matchObj = re.match(r'^//', addr, re.M|re.I)
     if matchObj:
-        return null
+        return None
 
     return request_url
 
