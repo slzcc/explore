@@ -89,11 +89,10 @@ def urlPathCompensation(base_url, request_url):
 
 if __name__ == '__main__':
     for url in urls.split('\n'):
+        logging.info("当前探测的域名为: {}".format(url))
         result = get_news_content(url)
-        print(result)
         for data_type in result:
             for url_data in result[data_type]:
-                print(url_data,urlPathCompensation(url, url_data))
                 if url_data:
-                    session = requests.get(urlPathCompensation(url, url_data))
-                    print(session.status_code)
+                    session = requests.get(urlPathCompensation(url, url_data), timeout=2)
+                    logging.info("Static 地址 {} 请求返回结果: {}".format(urlPathCompensation(url, url_data), session.status_code))
