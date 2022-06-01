@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC  # 和下面Web
 from selenium.webdriver.support.wait import WebDriverWait
 from urllib.parse import urljoin
 from urllib.parse import urlparse
+from requests.exceptions import ReadTimeout
 
 import requests
 import re
@@ -95,5 +96,8 @@ if __name__ == '__main__':
             for data_type in result:
                 for url_data in result[data_type]:
                     if url_data:
-                        session = requests.get(urlPathCompensation(url, url_data), timeout=2)
+                        try:
+                            session = requests.get(urlPathCompensation(url, url_data), timeout=2)
+                        except ReadTimeout:
+                            logging.info("访问资源地址 {} 请求超时.".format(urlPathCompensation(url, url_data)))
                         logging.info("Static 地址 {} 请求返回结果: {}".format(urlPathCompensation(url, url_data), session.status_code))
