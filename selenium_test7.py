@@ -88,7 +88,7 @@ def urlPathCompensation(base_url, request_url):
     return request_url
 
 if __name__ == '__main__':
-    for url in urls:
+    for url in urls.split('\n'):
         result = get_news_content(url)
         print(result)
         for data_type in result:
