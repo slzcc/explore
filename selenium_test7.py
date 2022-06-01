@@ -8,6 +8,19 @@ from urllib.parse import urlparse
 
 import requests
 import re
+import logging
+
+with open('conf/domain.list') as f:
+    urls = f.read()
+
+logging.basicConfig(level=logging.INFO,
+                    filename='/dev/stdout',
+                    filemode='a',
+                    format=
+                    '%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'
+                    )
+
+REQUEST_PORT = 443
 
 def html_selenium_firefox(url):
     """
@@ -75,7 +88,6 @@ def urlPathCompensation(base_url, request_url):
     return request_url
 
 if __name__ == '__main__':
-    urls = ["https://www.billance.com"]
     for url in urls:
         result = get_news_content(url)
         print(result)
